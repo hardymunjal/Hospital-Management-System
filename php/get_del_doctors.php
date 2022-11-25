@@ -1,6 +1,7 @@
 <?php
 
-$query = "SELECT * FROM doctor;";
+# Select the doctors which are not head doctors and do not treat patients
+$query = "SELECT d.licensenum, d.firstname, d.lastname FROM doctor d inner join hospital h ON d.hosworksat=h.hoscode left join looksafter l ON d.licensenum=l.licensenum WHERE d.licensenum!=h.headdoc AND l.ohipnum IS NULL;";
 
 $result = mysqli_query($connection, $query);
 
