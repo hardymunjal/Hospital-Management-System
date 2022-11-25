@@ -3,7 +3,7 @@ include 'connecttodb.php';
 
 $doc_name = $_POST["doctor"];
 
-$query = "SELECT p.firstname, p.lastname, p.ohipnum FROM doctor d INNER JOIN looksafter l ON d.licensenum=l.licensenum INNER JOIN patient p ON l.ohipnum=p.ohipnum;";
+$query = "SELECT DISTINCT(p.ohipnum), p.firstname, p.lastname FROM doctor d INNER JOIN looksafter l ON d.licensenum=l.licensenum INNER JOIN patient p ON l.ohipnum=p.ohipnum;";
 if ($doc_name != "") {
     $query = "SELECT p.firstname, p.lastname, p.ohipnum FROM doctor d INNER JOIN looksafter l ON d.licensenum=l.licensenum INNER JOIN patient p ON l.ohipnum=p.ohipnum WHERE d.licensenum='{$doc_name}';";
 }

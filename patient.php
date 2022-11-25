@@ -35,7 +35,7 @@ include "./php/connecttodb.php";
                 <div class="filter-div">
                         <form action="" method="POST">
                                 <select name="doctor" id="doctor">
-                                        <option value="">Choose Doctor</option>
+                                        <option value="">All Doctors</option>
                                         <?php
                                         # Select doctors which are treating atleast 1 patient
                                         $query = "SELECT DISTINCT(d.licensenum), d.firstname, d.lastname FROM doctor d inner join looksafter l ON d.licensenum=l.licensenum;";
