@@ -37,19 +37,20 @@ include "./php/connecttodb.php";
                                 <select name="doctor" id="doctor">
                                         <option value="">Choose Doctor</option>
                                         <?php
-                        $query = "SELECT * FROM doctor;";
-                        $result = mysqli_query($connection, $query);
-                        if (!$result) {
-                                echo mysqli_error($connection);
-                        } else {
-                                while ($row = mysqli_fetch_assoc($result)) {
-                                        $lic_num = $row["licensenum"];
-                                        $doc_fname = $row["firstname"];
-                                        $doc_lname = $row["lastname"];
-                                        echo "<option value=" . $lic_num . ">" . $lic_num . ":->" . $doc_fname . " " . $doc_lname . "</option>";
-                                }
-                        }
-                        ?>
+                                        # Select doctors which are treating atleast 1 patient
+                                        $query = "SELECT DISTINCT(d.licensenum), d.firstname, d.lastname FROM doctor d inner join looksafter l ON d.licensenum=l.licensenum;";
+                                        $result = mysqli_query($connection, $query);
+                                        if (!$result) {
+                                                echo mysqli_error($connection);
+                                        } else {
+                                                while ($row = mysqli_fetch_assoc($result)) {
+                                                        $lic_num = $row["licensenum"];
+                                                        $doc_fname = $row["firstname"];
+                                                        $doc_lname = $row["lastname"];
+                                                        echo "<option value=" . $lic_num . ">" . $lic_num . ":->" . $doc_fname . " " . $doc_lname . "</option>";
+                                                }
+                                        }
+                                        ?>
                                 </select>
                                 <input type="submit" class="submit-form" value="Get Patients">
                 </div>
@@ -61,8 +62,8 @@ include "./php/connecttodb.php";
                                 <th>Last Name</th>
                         </tr>
                         <?php
-                include "./php/show_patients_.php";
-                ?>
+                        include "./php/show_patients_.php";
+                        ?>
                 </table>
                 <div class="footer">
                         <p> <b> &copy; All Rights Reserved by Group No. 105 </b></p>
