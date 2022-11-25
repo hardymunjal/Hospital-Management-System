@@ -41,7 +41,7 @@ include "./php/connecttodb.php";
                             $query = "SELECT * FROM doctor;";
                             $result = mysqli_query($connection, $query);
                             if (!$result) {
-                                    die("databases query failed.");
+                                    echo mysqli_error($connection);
                             } else {
                                     while ($row = mysqli_fetch_assoc($result)) {
                                             $lic_num = $row["licensenum"];
@@ -58,7 +58,7 @@ include "./php/connecttodb.php";
                             $query = "SELECT * FROM patient;";
                             $result = mysqli_query($connection, $query);
                             if (!$result) {
-                                    die("databases query failed.");
+                                    echo mysqli_error($connection);
                             } else {
                                     while ($row = mysqli_fetch_assoc($result)) {
                                             $p_num = $row["ohipnum"];

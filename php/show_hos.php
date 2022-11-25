@@ -9,7 +9,7 @@ if (isset($_POST["column"])) {
     $result_hos = mysqli_query($connection, $query_hos);
 
     if (!$result_hos) {
-        die("databases query failed.");
+        echo mysqli_error($connection);
     }
     while ($row = mysqli_fetch_assoc($result_hos)) {
         echo "<tr><td>" . $row["hosname"] . "</td>";
@@ -21,5 +21,6 @@ if (isset($_POST["column"])) {
     }
 
     mysqli_free_result($result_hos);
+    mysqli_close($connection);
 }
 ?>

@@ -10,6 +10,8 @@ if (isset($_POST['submit_b'])) {
    } else {
       $message = "Doctor deleted successfully!";
       echo "<script type='text/javascript'>alert('$message');</script>";
+      echo "<script>document.location = 'http://cs3319.gaul.csd.uwo.ca/vm196/a3group105/del_doctor.php'</script>";
    }
 }
+mysqli_close($connection)
 ?>

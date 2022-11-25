@@ -11,7 +11,7 @@ if ($doc_name != "") {
 $result = mysqli_query($connection, $query);
 
 if (!$result) {
-    die("databases query failed.");
+    echo mysqli_error($connection);
 }
 while ($row = mysqli_fetch_assoc($result)) {
     $doctor = $row;
@@ -20,4 +20,5 @@ while ($row = mysqli_fetch_assoc($result)) {
     echo "<td>" . $row["lastname"] . "</td></tr>";
 }
 mysqli_free_result($result);
+mysqli_close($connection)
 ?>

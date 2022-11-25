@@ -9,7 +9,7 @@ if (isset($_POST["column"])) {
 
     $result_doc = mysqli_query($connection, $query_doc);
     if (!$result_doc) {
-        die("databases query failed.");
+        echo mysqli_error($connection);
     }
     while ($row_1 = mysqli_fetch_assoc($result_doc)) {
         $doc_fname = $row_1["firstname"];
@@ -17,5 +17,6 @@ if (isset($_POST["column"])) {
         echo "<tr><td>" . $doc_fname . " " . $doc_lname . "</td></tr>";
     }
     mysqli_free_result($result_doc);
+    mysqli_close($connection);
 }
 ?>

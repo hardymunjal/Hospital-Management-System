@@ -1,4 +1,5 @@
 <?php
+include "connecttodb.php";
 $column = $_POST["column"];
 $order = $_POST["order"];
 $speciality = $_POST["speciality"];
@@ -19,7 +20,7 @@ if ($order != "" and $column != "") {
 $result = mysqli_query($connection, $query);
 
 if (!$result) {
-    die("databases query failed.");
+    echo mysqli_error($connection);
 }
 while ($row = mysqli_fetch_assoc($result)) {
     $doctor = $row;
@@ -32,4 +33,5 @@ while ($row = mysqli_fetch_assoc($result)) {
     echo "<td>" . $row["speciality"] . "</td></tr>";
 }
 mysqli_free_result($result);
+mysqli_close($connection);
 ?>
